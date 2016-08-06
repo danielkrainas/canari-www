@@ -22,9 +22,13 @@
 		<i class="fa fa-exclamation-triangle"></i> Sorry, <strong>{ canary.title }</strong> is no longer valid.</a>.
 	</div>
 
-	<div hide={ canary.ttl < 0 }>
+	<div>
 		<h3><i class="fa fa-square"></i> { canary.title }</h3>
 		<dl>
+			<dt>Status</dt>
+			<dd hide={ canary.ttl < 0 } class="text-success"><i class="fa fa-check"></i> Alive</dd>
+			<dd show={ canary.ttl < 0 } class="text-danger"><i class="fa fa-ban"></i> Dead</dd>
+
 			<dt>Time to live</dt>
 			<dd>{ canary.$ttl }</dd>
 
