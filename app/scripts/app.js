@@ -1,3 +1,4 @@
+/* bootstrap stuff */
 import riot from 'riot';
 import reduxMixin from 'riot-redux-mixin';
 
