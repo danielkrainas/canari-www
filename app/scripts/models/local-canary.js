@@ -1,5 +1,13 @@
-import restful from 'restful.js';
+import 'store.js' as store from 'store.js';
 
-export class LocalCanary {
-	
+const CANARIES_KEY = 'v1.canaries';
+
+export default class LocalCanary {
+	constructor() {
+
+	}
+
+	static getAll() {
+		return store.get(CANARIES_KEY) || [];
+	}
 }
