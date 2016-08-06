@@ -17,6 +17,7 @@
     "grunt-contrib-connect": "^1.0.2",
     "grunt-contrib-watch": "^1.0.0",
     "grunt-rollup": "^0.7.1",
+    "lodash": "^4.14.1",
     "redux": "^3.5.2",
     "require-relative": "^0.8.7",
     "restful.js": "^0.9.6",
