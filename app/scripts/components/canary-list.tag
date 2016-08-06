@@ -1,7 +1,7 @@
 import _ from 'lodash';
 <canarylist>
 	<div class="list-group">
-		<a role="button" each={ canaries } class={ list-group-item: true, active: selected }>{ title } </a>
+		<a role="button" each={ canaries } class={ list-group-item-canari: true, list-group-item: true, active: selected }>{ title } </a>
 	</div>
 
 	<script>

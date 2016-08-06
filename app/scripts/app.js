@@ -2,8 +2,8 @@
 import riot from 'riot';
 import reduxMixin from 'riot-redux-mixin';
 
-import './components/canary/canary-list.tag';
-import './components/canary/canary-details.tag';
+import './components/canary-list.tag';
+import './components/canary-details.tag';
 
 import LocalCanary from './models/local-canary';
 import storeFactory from './store';

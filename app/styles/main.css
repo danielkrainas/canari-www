@@ -9,7 +9,7 @@
 
 html, body {
 	padding-top: 50px;
-	background: #eee;
+	background: #fff;
 }
 
 .navbar.navbar-canari {
@@ -20,6 +20,13 @@ html, body {
 	color: #FFF !important;
 }
 
+.list-group-item-canari.active, 
+.list-group-item-canari.active:focus, 
+.list-group-item-canari.active:hover {
+	background-color: #0967AD;
+	border-color: #0967AD;
+}
+
 .navbar-icon {
 	position: absolute;
 	left: 20px;
@@ -28,4 +35,12 @@ html, body {
 
 a[role=button], div[role=button] {
 	cursor: pointer;
+}
+
+.label-list a {
+	margin-right: 3px;
+}
+
+.label-canari {
+	background-color: #CB4A58;
 }

@@ -18,6 +18,10 @@ module.exports = function(grunt) {
             }
         },
 
+        concurrent: {
+            watchrun: ['connect:dev:keepalive', 'watch']
+        },
+
         connect: {
             options: {
                 port: 7890,
@@ -83,6 +87,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-rollup');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-connect');
+    grunt.loadNpmTasks('grunt-concurrent');
     grunt.registerTask('build', ['rollup']);
-    grunt.registerTask('serve', ['build', 'connect:dev:keepalive', 'watch']);
+    grunt.registerTask('serve', ['build', 'concurrent:watchrun']);
 };
