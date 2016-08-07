@@ -10,10 +10,10 @@ export function setCanaries(canaries) {
 			let status = c.ttl > -1 ? 'alive' : 'dead';
 			c.$local = {
 				status: status,
-				alive: status === 'alive',
-				dead: status === 'dead',
+				alive: (status === 'alive'),
+				dead: (status === 'dead'),
 				updated_at: moment(c.updated_at).fromNow(),
-				ttl: moment.duration(c.ttl).humanize();
+				ttl: moment.duration(c.ttl).humanize(),
 				labels: (c.labels || []).map(l => {
 					return { title: l }
 				})
