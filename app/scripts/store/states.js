@@ -1,1 +1,2 @@
 export const SET_CANARIES = 'SET_CANARIES';
+export const SELECT_CANARY = 'SELECT_CANARY';

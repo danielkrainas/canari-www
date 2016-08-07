@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import moment from 'moment/min/moment-with-locales.min.js';
 
-import { SET_CANARIES } from './states';
+import { SET_CANARIES, SELECT_CANARY } from './states';
 
 export function setCanaries(canaries) {
 	return {
@@ -21,5 +21,12 @@ export function setCanaries(canaries) {
 			
 			return c;
 		})
+	};
+}
+
+export function selectCanary(canaryOrId) {
+	return {
+		type: SELECT_CANARY,
+		id: _.isString(canaryOrId) ? canaryOrId : canaryOrId.id
 	};
 }

@@ -1,12 +1,16 @@
 import _ from 'lodash';
 
-import { SET_CANARIES } from './states';
+import { SET_CANARIES, SELECT_CANARY } from './states';
 
 export default reducer = (state, action) => {
 	state = _.cloneDeep(state);
 	if (action.type === SET_CANARIES) {
 		state = _.assign(state, {
 			canaries: action.data
+		});
+	} else if (action.type === SELECT_CANARY) {
+		state = _.assign(state, {
+			selected: _.find(state.canaries, { id: action.id })
 		});
 	}
 
