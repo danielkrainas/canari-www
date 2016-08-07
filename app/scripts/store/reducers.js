@@ -10,7 +10,7 @@ export default reducer = (state, action) => {
 		});
 	} else if (action.type === SELECT_CANARY) {
 		state = _.assign(state, {
-			selected: _.find(state.canaries, { id: action.id })
+			selected: _.clone(_.find(state.canaries, { id: action.id }))
 		});
 	}
 
@@ -28,14 +28,9 @@ function updateSelection(state) {
 			selected.selected = true;
 			state.selected = _.clone(selected);
 		}
-	} else if (state.canaries.length > 0) {
-		state.canaries[0].selected = true;
-		state.selected = _.clone(state.canaries[0]);
 	}
 
-	state.canaries.forEach(i => {
-		if (!state.selected || state.selected.name !== i.name) {
-			i.selected = false;
-		}
+	state.canaries.forEach(c => {
+		c.selected = state.selected && state.selected.id === c.id;
 	});
 }
