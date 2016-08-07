@@ -18,7 +18,7 @@
 		<li>{ canary.id }</li>
 	</ol>
 
-	<div class="alert alert-block alert-warning" show={ canary.ttl < 0 }>
+	<div class="alert alert-block alert-warning" show={ canary.$local.dead }>
 		<i class="fa fa-exclamation-triangle"></i> Sorry, <strong>{ canary.title }</strong> is no longer valid.</a>.
 	</div>
 
@@ -26,19 +26,20 @@
 		<h3><i class="fa fa-square"></i> { canary.title }</h3>
 		<dl>
 			<dt>Status</dt>
-			<dd hide={ canary.ttl < 0 } class="text-success"><i class="fa fa-check"></i> Alive</dd>
-			<dd show={ canary.ttl < 0 } class="text-danger"><i class="fa fa-ban"></i> Dead</dd>
+			<dd class={ 'text-success': canary.$local.alive, 'text-danger': canary.$local.dead }>
+				<i class{ fa: true, 'fa-check': canary.$local.alive, 'fa-ban': canary.$local.dead }></i> { canary.$local.status }
+			</dd>
 
 			<dt>Time to live</dt>
-			<dd>{ canary.$ttl }</dd>
+			<dd>{ canary.$local.ttl }</dd>
 
 			<dt>Last updated</dt>
-			<dd>{ canary.$updated_at }</dd>
+			<dd>{ canary.$local.updated_at }</dd>
 		</dl>
 
 		<h4>Labels</h4>
 		<p class="label-list">
-			<a class="label label-canari" each={ canary.$labels }>{ title }</a>
+			<a class="label label-canari" each={ canary.$local.labels }>{ title }</a>
 		</p>
 		<hr />
 

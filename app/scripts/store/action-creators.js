@@ -7,11 +7,17 @@ export function setCanaries(canaries) {
 	return {
 		type: SET_CANARIES,
 		data: _.cloneDeep(canaries || []).map(c => {
-			c.$updated_at = moment(c.updated_at).fromNow();
-			c.$ttl = moment.duration(c.ttl).humanize();
-			c.$labels = (c.labels || []).map(l => {
-				return { title: l }
-			});
+			let status = c.ttl > -1 ? 'alive' : 'dead';
+			c.$local = {
+				status: status,
+				alive: status === 'alive',
+				dead: status === 'dead',
+				updated_at: moment(c.updated_at).fromNow(),
+				ttl: moment.duration(c.ttl).humanize();
+				labels: (c.labels || []).map(l => {
+					return { title: l }
+				})
+			};
 			
 			return c;
 		})
