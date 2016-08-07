@@ -1,33 +1,49 @@
 import _ from 'lodash';
-import { selectCanary } from './store/action-creators';
+import { routeChanged } from './store/action-creators';
+
+export const ROUTE_CANARY = 'canary';
+export const ROUTE_GALLERY = 'gallery';
+export const ROUTE_DEFAULT = 'default';
 
 export default class Router {
-    constructor(route, store) {
-        this.setup(route);
-        this.route = route;
-        this.store = store;
+    constructor() {
+        this.store = null;
+        this.route = null;
+        this.initialized = false;
     }
 
-    setup(route) {
+    connect(route, store) {
+        if (this.initialized) {
+            console.warn('router already initialized');
+            return;
+        }
+
+        this.initialized = true;
+        this.store = store;
+        this.route = route;
+
         route('/canaries/*', id => {
-            this.store.dispatch(selectCanary(id));
+            store.dispatch(routeChanged(ROUTE_CANARY, { id }));
         });
+
+        route('/canaries', () => {
+            store.dispatch(routeChanged(ROUTE_GALLERY));
+        });
+
+        route('/', () => {
+            // duplicate gallery for now
+            store.dispatch(routeChanged(ROUTE_GALLERY));
+        });
+    }
+
+    go(path) {
+        return this.route(path);
     }
 
     mixin() {
         return {
-            routing: {
-                go: path => {
-                    this.route(path);
-                },
-
-                canary: canary => {
-                    let id = _.isString(canary) ? canary : canary.id;
-                    this.route('/canaries/' + id);
-                },
-
-                router: this
-            }
+            router: this,
+            route: this.route
         };
     }
 }

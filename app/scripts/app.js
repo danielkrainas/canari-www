@@ -13,12 +13,15 @@ import storeFactory from './store';
 import { setCanaries } from './store/action-creators';
 import * as wares from './store/middleware';
 
-var router = new Router(route.create());
-var store = storeFactory(wares.logging);
+var router = new Router();
+var store = storeFactory(wares.logging, wares.router(router));
+
+router.connect(route.create(), store);
+
 store.dispatch(setCanaries(LocalCanary.getAll()));
 
 riot.mixin('redux', reduxMixin(store));
-riot.mixin('router', router.mixin);
+riot.mixin('router', router.mixin());
 riot.mount('*', {});
 
 route.start(true);

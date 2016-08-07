@@ -1,9 +1,14 @@
 import _ from 'lodash';
 
-import { SET_CANARIES, SELECT_CANARY } from './states';
+import { SET_CANARIES, SELECT_CANARY, ROUTE_CHANGED } from './states';
+import { ROUTE_CANARY, ROUTE_GALLERY } from '../router';
 
 export default reducer = (state, action) => {
 	state = _.cloneDeep(state);
+	if (action.type === ROUTE_CHANGED) {
+		changeRoutes(state, action);
+	}
+
 	if (action.type === SET_CANARIES) {
 		state = _.assign(state, {
 			canaries: action.data
@@ -17,6 +22,24 @@ export default reducer = (state, action) => {
 	updateSelection(state);
 	return state;
 };
+
+function changeRoutes(state, action) {
+	state.route = {
+		name: action.route,
+		params: action.params,
+		query: action.query
+	};
+
+	switch (action.route) {
+		case ROUTE_CANARY:
+			state.selected = _.clone(_.find(state.canaries, { id: action.params.id }));
+			break;
+
+		case ROUTE_GALLERY:
+			state.selected = null;
+			break;
+	}
+}
 
 function updateSelection(state) {
 	if (state.selected) {

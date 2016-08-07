@@ -6,7 +6,11 @@ import * as wares from './middleware';
 
 const defaultState = {
 	canaries: [],
-	selected: null
+	selected: null,
+    route: {
+        params: {},
+        query: {}
+    }
 };
 
 export default function storeFactory(...middlewares) {
