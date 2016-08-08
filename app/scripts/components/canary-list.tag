@@ -2,9 +2,14 @@ import _ from 'lodash';
 import { showCanary } from '../store/action-creators';
 
 <canarylist>
-	<h4><i class="fa fa-heart"></i> Canaries</h4>
-	<div class="list-group">
-		<a role="button" each={ canaries } onclick={ select } class={ list-group-item-canari: true, list-group-item: true, active: selected }>{ title } </a>
+	
+	<div class="row">
+		<div class="col-md-offset-2 col-md-8 col-sm-12">
+			<h4><i class="fa fa-heart"></i> Canaries</h4>
+			<div class="list-group">
+				<a role="button" each={ canaries } onclick={ select } class={ list-group-item-canari: true, list-group-item: true, active: selected }>{ title } </a>
+			</div>
+		</div>
 	</div>
 
 	<script>
